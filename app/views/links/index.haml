@@ -1,0 +1,10 @@
+%h1
+  = flash[:error]
+.col-md-6.col-md-offset-3
+  .main-card
+    %h2.text-center Shrink your links!
+    %h4.text-center A simple URL shortener.
+    = simple_form_for @link, html: { class: 'text-center' } do |f|
+      = f.input :original_url, as: :string, placeholder: 'Enter the URL you want to shorten...', label: false
+      = f.input :custom_url,   as: :string, placeholder: 'Enter your custom url', label: false
+      = f.submit 'Shorten!', class: 'btn btn-green'
