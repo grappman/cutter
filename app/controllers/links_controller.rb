@@ -1,6 +1,6 @@
 class LinksController < ApplicationController
 
-  before_action :find_url, only: [:show, :shortened]
+  before_action :find_url, only: [:show, :compressed]
 
   def index
     @link = Link.new

@@ -3,8 +3,10 @@ html, body {
 }
 body {
     margin:0px;
-    padding: 0px;
-    color: #4C4C4C;
+    padding-top: 70px;
+    background: asset_url('cut_url.jpg') no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
 }
 .wrap {
   height: auto;
