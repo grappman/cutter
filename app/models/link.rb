@@ -4,11 +4,23 @@ class Link < ApplicationRecord
             presence: true,
             on: :create
 
+  validates :custom_url,
+            uniqueness: true,
+            if: 'custom_url.present?'
+
+  validate :custom_method
+
   validates_format_of :original_url,
                       with: /\A(?:(?:http|https):\/\/)?([-a-zA-Z0-9.]{2,256}\.[a-z]{2,4})\b(?:\/[-a-zA-Z0-9@,!:%_\+.~#?&\/\/=]*)?\z/
 
   before_create :generate_short_url
 
+  def custom_method
+    if self.custom_url.present?
+      find = Link.where(short_url: self.custom_url)
+      errors.add(:custom_url, 'Impossible create the duplicate url') if find.present?
+    end
+  end
   def generate_short_url
     if custom_url.present?
       self.short_url = custom_url

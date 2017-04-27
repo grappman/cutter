@@ -10,5 +10,5 @@
       %br
       %p.larger
         Your compressed URL is: &nbsp;
-        %span#short-url{'data-content': 'Press Ctrl-C to copy', 'data-placement': 'bottom'}= "#{request.base_url}/#{@link.short_url}"
+        %span#short-url{'data-container':'body','data-toggle':'popover','data-content': 'Press Ctrl-C to copy', 'data-placement': 'bottom'}= "#{request.base_url}/#{@link.short_url}"
       = link_to 'Compress new link', root_path, class: 'btn btn-primary'

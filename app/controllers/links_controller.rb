@@ -16,15 +16,15 @@ class LinksController < ApplicationController
 
     url = @link.original_url.include?('//') ? @link.original_url : "http://#{@link.original_url}"
 
-    if @link.custom_url.present?
-      find = Link.where(short_url: @link.custom_url)
-
-      if find.present?
-        flash[:error] = 'Impossible create the duplicate url'
-        redirect_to root_url
-        return
-      end
-    end
+    # if @link.custom_url.present?
+    #   find = Link.where(short_url: @link.custom_url)
+    #
+    #   if find.present?
+    #     flash[:error] = 'Impossible create the duplicate url'
+    #     redirect_to root_url
+    #     return
+    #   end
+    # end
 
     unless @link.original_url.include?('.')
       flash[:error] = 'Incorrect url address'
