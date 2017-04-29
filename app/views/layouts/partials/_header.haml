@@ -1,9 +1,10 @@
-%nav.navbar.navbar-fixed-top.navbar-inverse
-  .container
-    .navbar-header
-      %button.navbar-toggle.collapsed{"aria-controls" => "navbar", "aria-expanded" => "false", "data-target" => "#navbar", "data-toggle" => "collapse", :type => "button"}
-        %span.sr-only Toggle navigation
-        %span.icon-bar
-        %span.icon-bar
-        %span.icon-bar
-      %a.navbar-brand{ href: root_url } Cut URL
+%header
+  %nav.navbar.navbar-fixed-top.navbar-inverse
+    .container
+      .navbar-header
+        %button.navbar-toggle.collapsed{'aria-controls': 'navbar', 'aria-expanded': 'false', 'data-target': '#navbar', 'data-toggle': 'collapse'}
+          %span.sr-only Toggle navigation
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
+        = link_to('Cut URL', root_url, class: 'navbar-brand')

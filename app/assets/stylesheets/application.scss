@@ -1,9 +1,7 @@
-// External libraries
-@import "bootstrap-sprockets";
-@import "bootstrap";
+// Plugins
+@import 'bootstrap-sprockets';
+@import 'bootstrap';
 
-// My CSS
-@import "layout/index";
-@import "pages/index";
-
-
+// Custom
+@import 'layout/*';
+@import 'pages/*';
