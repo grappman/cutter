@@ -1,0 +1,15 @@
+<% if @exist_link.present? %>
+  toastr.info(<% I18n.t('remote.link.info')%>);
+  setTimeout(function() {
+      window.location.href = '<%= shortened_path(@exist_link.short_url) %>';
+  }, 1500);
+<% else %>
+  <% if @link.errors.present? %>
+    toastr.error('<%= @link.errors.full_messages.first %>');
+  <% else %>
+    toastr.success(<% I18n.t('remote.link.success')%>);
+    setTimeout(function() {
+        window.location.href = '<%= shortened_path(@link.short_url) %>';
+    }, 1100);
+  <% end %>
+<% end %>

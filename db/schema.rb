@@ -16,13 +16,13 @@ ActiveRecord::Schema.define(version: 20170411215647) do
   enable_extension "plpgsql"
 
   create_table "links", force: :cascade do |t|
-    t.text     "original_url"
     t.string   "short_url"
     t.string   "sanitized_url"
     t.string   "custom_url"
-    t.integer  "http_status"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.text     "original_url",              null: false
+    t.integer  "http_status",   default: 0, null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
 end

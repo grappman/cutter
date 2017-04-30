@@ -1,18 +1,19 @@
 class Link < ApplicationRecord
 
   validates         :original_url,
-                    presence: true,
+                    presence: { message: I18n.t('custom_errors.original_url.presence')},
                     on: :create
 
+  validates         :original_url,
+                    url: { message: I18n.t('custom_errors.original_url.url')}
+
   validates         :custom_url,
-                    uniqueness: true,
-                    if: 'custom_url.present?'
+                    uniqueness: { message: 'A short link for this URL is already in our database' },
+                    if: 'custom_url.present?',
+                    on: :create
 
   validates         :sanitized_url,
-                    uniqueness: { message: 'A short link for this URL is already in our database' }
-
-  validates         :original_url,
-                    url: true
+                    uniqueness: { message: I18n.t('custom_errors.sanitized_url') }
 
   validate          :custom_url_exist?,
                     if: 'custom_url.present?'
@@ -24,7 +25,7 @@ class Link < ApplicationRecord
   before_validation :get_http_status
 
   def http_status_valid?
-    errors.add(:http_status, 'HTTP status is not correct') if http_status >= 400
+    errors.add(:http_status, I18n.t('custom_errors.http_status_valid')) if http_status >= 400
   end
 
   def get_http_status
@@ -33,7 +34,7 @@ class Link < ApplicationRecord
   end
 
   def custom_url_exist?
-    errors.add(:custom_url, 'Impossible create the duplicate url') if Link.where(short_url: custom_url).present?
+    errors.add(:custom_url, I18n.t('custom_errors.custom_url_exist')) if Link.where(short_url: custom_url).present?
   end
 
   def generate_short_url

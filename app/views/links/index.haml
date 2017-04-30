@@ -1,12 +1,9 @@
 .container
   .col-md-6.col-md-offset-3
-    .text-center.text-danger
-      %h2
-        = flash[:error]
     .main-card
       %h2.text-center Compress your links!
       %h4.text-center A simple URL shortener.
-      = simple_form_for @link, html: { class: 'text-center' } do |f|
-        = f.input :original_url, as: :string, placeholder: 'Enter the URL you want to compress!', label: false
-        = f.input :custom_url,   as: :string, placeholder: 'Enter your custom url', label: false
+      = simple_form_for @link, remote: true, html: { class: 'text-center' } do |f|
+        = f.input :original_url, as: :string, placeholder: t('forms.link.placeholders.original_url'), label: false
+        = f.input :custom_url,   as: :string, placeholder: t('forms.link.placeholders.custom_url'), label: false
         = f.submit 'Compress!', class: 'btn btn-danger'

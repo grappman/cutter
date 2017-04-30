@@ -1,14 +1,13 @@
 .container
-  .form-card
-    %h3.text-center Well done, your link has been shortened!
-    %h3.text-center Share it now!
+  .form-card.text-center
+    %h3 Well done, your link has been shortened!
+    %h3 Share it now!
     .col-md-6.col-md-offset-3
-      %form.simple_form
       .form-group.string.disabled
-        %label.string.disabled.control-label{ for: "url_original_url"}  Your original URL was:
+        %label.string.disabled.control-label{for: 'url_original_url'}  Your original URL was:
         %input#url_original_url.string.disabled.form-control{disabled: 'disabled', value: "#{@link.original_url}"}
       %br
       %p.larger
         Your compressed URL is: &nbsp;
-        %span#short-url{'data-container':'body','data-toggle':'popover','data-content': 'Press Ctrl-C to copy', 'data-placement': 'bottom'}= "#{request.base_url}/#{@link.short_url}"
-      = link_to 'Compress new link', root_path, class: 'btn btn-primary'
+        %span#short-url{data: {container: 'body', toggle: 'popover', content: 'Press Ctrl-C to copy', placement: 'top'}}= "#{request.base_url}/#{@link.short_url}"
+      = link_to 'Compress new link', root_path, class: 'btn btn-success'

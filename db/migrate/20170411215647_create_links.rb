@@ -6,9 +6,9 @@ class CreateLinks < ActiveRecord::Migration[5.0]
       t.string  :sanitized_url
       t.string  :custom_url
 
-      t.text    :original_url, null: false
+      t.text    :original_url,  null: false
 
-      t.integer :http_status
+      t.integer :http_status,   null: false, default: 0
 
       t.timestamps
     end

@@ -1,6 +1,8 @@
-class LinksController < ApplicationController
+class LinksController < InheritedResources::Base
 
   before_action :find_url, only: [:show, :compressed]
+
+  respond_to :js, :html
 
   def index
     @link = Link.new
@@ -13,13 +15,17 @@ class LinksController < ApplicationController
   def create
     @link = Link.new(link_params)
     @link.sanitize
-    redirect_to shortened_path(@link.short_url) if @link.save
+
+    create! do |format|
+      format.js {render layout: false}
+    end
   end
 
   private
 
     def find_url
-      @link = Link.find_by(short_url: params[:short_url])
+      @exist_link = Link.find_by(original_url:  @link.original_url)
+      @link       = Link.find_by(short_url:     params[:short_url])
     end
 
     def link_params
