@@ -24,7 +24,8 @@ class LinksController < InheritedResources::Base
   private
 
     def find_url
-      @exist_link = Link.find_by(original_url:  @link.original_url)
+      puts @link
+      # @exist_link = Link.find_by(original_url:  @link.original_url)
       @link       = Link.find_by(short_url:     params[:short_url])
     end
 

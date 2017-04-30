@@ -14,6 +14,7 @@ gem 'validate_url'                              # This gem adds the capability o
 gem 'rufus-scheduler'                           # Job scheduler for Ruby (at, cron, in and every jobs).
 gem 'remotipart'
 gem 'inherited_resources'                       # Inherited Resources speeds up development by making your controllers inherit all restful actions so you just have to focus on what is important.
+gem 'active_model_serializers'                  # ActiveModelSerializers brings convention over configuration to your JSON generation.
 
 gem 'haml-rails'                                # Haml-rails provides Haml generators for Rails 4.
 gem 'bootstrap-sass'                            # bootstrap-sass is a Sass-powered version of Bootstrap, ready to drop right into your Sass powered applications.
