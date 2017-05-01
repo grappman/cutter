@@ -1,6 +1,6 @@
 en:
   custom_errors:
-    http_status_valid: 'HTTP status not valid'
+    http_status_valid: "HTTP status isn't valid (%{status})" 
     custom_url_exist:  'Custom URL already exists'
     sanitized_url:     'The URL you entered was exist'
     custom_url:        'You custom URL was exist'
