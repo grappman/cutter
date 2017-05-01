@@ -1,13 +1,16 @@
 class Api::LinksController < Api::ApplicationController
 
   def create
-    @link = Link.new(link_params)
-    @link.sanitize
-
+    if link_params[:custom_url].present?
+      @link = Link.new(link_params{original_url})
+      @link.save
+    else
+      @link = Link.find_or_create_by(link_params)
+    end
     create! do |success, failure|
-      success.json {
+      success.json do
         render  json: @link, serializer: LinkSerializer
-      }
+      end
     end
   end
 

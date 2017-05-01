@@ -8,12 +8,13 @@ class Link < ApplicationRecord
                     url: { message: I18n.t('custom_errors.original_url.url')}
 
   validates         :custom_url,
-                    uniqueness: { message: 'A short link for this URL is already in our database' },
+                    uniqueness: { message: I18n.t('custom_errors.custom_url') },
                     if: 'custom_url.present?',
                     on: :create
 
   validates         :sanitized_url,
-                    uniqueness: { message: I18n.t('custom_errors.sanitized_url') }
+                    uniqueness: { message: I18n.t('custom_errors.sanitized_url') },
+                    unless: 'custom_url.present?'
 
   validate          :custom_url_exist?,
                     if: 'custom_url.present?'
@@ -22,7 +23,7 @@ class Link < ApplicationRecord
 
   before_create     :generate_short_url
 
-  before_validation :get_http_status
+  before_validation :get_http_status, :sanitize
 
   def http_status_valid?
     errors.add(:http_status, I18n.t('custom_errors.http_status_valid')) if http_status >= 400

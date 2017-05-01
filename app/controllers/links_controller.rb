@@ -13,19 +13,21 @@ class LinksController < InheritedResources::Base
   end
 
   def create
-    @link = Link.new(link_params)
-    @link.sanitize
 
-    create! do |format|
-      format.js {render layout: false}
+    if link_params[:custom_url].present?
+      @link = Link.new(link_params{original_url})
+      @link.save
+    else
+      @link = Link.find_or_create_by(link_params)
+    end
+    respond_with(@link) do |success, failure|
+      success.js {render layout: false}
     end
   end
 
   private
 
     def find_url
-      puts @link
-      # @exist_link = Link.find_by(original_url:  @link.original_url)
       @link       = Link.find_by(short_url:     params[:short_url])
     end
 
