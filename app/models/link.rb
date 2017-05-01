@@ -26,7 +26,7 @@ class Link < ApplicationRecord
   before_validation :get_http_status, :sanitize
 
   def http_status_valid?
-    errors.add(:http_status, I18n.t('custom_errors.http_status_valid', status: http_status)) if http_status >= 400
+    errors.add(:http_status, I18n.t('custom_errors.http_status_valid', status: http_status)) if http_status > 403
   end
 
   def get_http_status
